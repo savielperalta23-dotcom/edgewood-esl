@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Edgewood University - Programa ESL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      color: #000;
+      overflow-x: hidden;
+    }
+
+    /* === NAVBAR === */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #fff;
+      padding: 20px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    /* Logo de Edgewood visible */
+    .logo-container img {
+      height: 50px;
+      width: auto;
+    }
+
+    .logo-text {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #000;
+    }
+
+    .apply-btn {
+      background: #000;
+      color: #fff;
+      padding: 12px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+
+    .apply-btn:hover {
+      background: #333;
+      transform: translateY(-2px);
+    }
+
+    /* === HERO SECTION === */
+    .hero {
+      margin-top: 90px;
+      min-height: 100vh;
+      background: 
+        linear-gradient(135deg, rgba(26, 26, 46, 0.85) 0%, rgba(15, 52, 96, 0.85) 50%, rgba(22, 33, 62, 0.85) 100%),
+        url('bandera.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 800px;
+      height: 800px;
+      background: rgba(59, 130, 246, 0.1);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-text h1 {
+      font-size: 4rem;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 25px;
+      line-height: 1.1;
+    }
+
+    .hero-text h1 span {
+      color: #3b82f6;
+    }
+
+    .hero-text p {
+      font-size: 1.3rem;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 35px;
+      line-height: 1.6;
+    }
+
+    .hero-btn {
+      background: #3b82f6;
+      color: #fff;
+      padding: 18px 50px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.2rem;
+      display: inline-block;
+      transition: all 0.3s;
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+    }
+
+    .hero-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+    }
+
+    /* Hero sin imagen */
+    .hero-image {
+      display: none;
+    }
+
+    .hero-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+      justify-items: center;
+    }
+
+    /* === WHAT IS ESL SECTION === */
+    .what-is-esl {
+      padding: 100px 20px;
+      background: #fff;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Sección sin imagen */
+    .section-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .image-container {
+      display: none;
+    }
+
+    .content-box {
+      padding: 20px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .content-box h2 {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #000;
+      margin-bottom: 25px;
+      line-height: 1.2;
+    }
+
+    .content-box p {
+      font-size: 1.2rem;
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+
+    .content-btn {
+      background: #000;
+      color: #fff;
+      padding: 15px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-block;
+      transition: all 0.3s;
+    }
+
+    .content-btn:hover {
+      background: #333;
+      transform: translateY(-2px);
+    }
+
+    /* === INFO CARDS SECTION === */
+    .info-section {
+      padding: 100px 20px;
+      background: #f8f9fa;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 3rem;
+      font-weight: 900;
+      color: #000;
+      margin-bottom: 60px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .info-card {
+      background: #fff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      transition: all 0.3s;
+    }
+
+    .info-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+
+    .card-icon {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+    }
+
+    .info-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 15px;
+    }
+
+    .info-card p {
+      font-size: 1rem;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .info-card ul {
+      list-style: none;
+      margin-top: 15px;
+    }
+
+    .info-card ul li {
+      padding: 8px 0;
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .info-card ul li::before {
+      content: "✓ ";
+      color: #10b981;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    /* === CTA SECTION === */
+    .cta-section {
+      background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+      padding: 100px 20px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .cta-section h2 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      margin-bottom: 25px;
+    }
+
+    .cta-section p {
+      font-size: 1.4rem;
+      margin-bottom: 40px;
+      opacity: 0.95;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-big-btn {
+      background: #fff;
+      color: #3b82f6;
+      padding: 20px 60px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 1.3rem;
+      display: inline-block;
+      transition: all 0.3s;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+
+    .cta-big-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+    }
+
+    /* === PROCESS SECTION === */
+    .process-section {
+      padding: 100px 20px;
+      background: #fff;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      max-width: 1200px;
+      margin: 60px auto 0;
+    }
+
+    .step {
+      text-align: center;
+    }
+
+    .step-number {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #3b82f6, #1e40af);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin: 0 auto 20px;
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+    }
+
+    .step h3 {
+      font-size: 1.3rem;
+      color: #000;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .step p {
+      font-size: 1rem;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    /* === FOOTER === */
+    footer {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      margin-bottom: 30px;
+    }
+
+    /* 🖼️ AQUÍ VA EL LOGO DE EDGEWOOD EN EL FOOTER */
+    .footer-logo img {
+      height: 70px;
+      margin-bottom: 15px;
+    }
+
+    footer p {
+      margin: 10px 0;
+      color: #999;
+    }
+
+    .footer-contact {
+      margin-top: 30px;
+      font-size: 1.1rem;
+    }
+
+    .footer-contact p {
+      color: #fff;
+      margin: 8px 0;
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 968px) {
+      .hero-content, .section-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .process-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-text h1 {
+        font-size: 2.5rem;
+      }
+
+      .navbar {
+        padding: 15px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo-container">
+      <!-- Logo Edgewood -->
+      <img src="EDGEWOOD.jpeg" alt="Edgewood University">
+      <span class="logo-text">Edgewood University</span>
+    </div>
+    <a href="https://form.jotform.com/253058637291866" target="_blank" class="apply-btn">APPLY NOW</a>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Programa <span>ESL</span></h1>
+        <p>Diseñado para estudiantes internacionales que desean mejorar su inglés y alcanzar nuevas oportunidades en los Estados Unidos más con un permiso de trabajo.</p>
+        <a href="https://form.jotform.com/253058637291866" target="_blank" class="hero-btn">COMIENZA TU VIAJE</a>
+      </div>
+      <div class="hero-image">
+        <!-- 🖼️ IMAGEN PROGRAMA ESL (Tu segunda imagen) - REEMPLAZA ESTA URL -->
+        <img src="https://via.placeholder.com/500x600/1e40af/ffffff?text=PROGRAMA+ESL" alt="Programa ESL">
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IS ESL SECTION -->
+  <section class="what-is-esl">
+    <div class="container">
+      <div class="section-grid">
+        <div class="image-container">
+          <!-- 🖼️ IMAGEN QUÉ ES ESL (Tu primera imagen) - REEMPLAZA ESTA URL -->
+          <img src="https://via.placeholder.com/500x700/10b981/ffffff?text=QUE+ES+EL+PROGRAMA+ESL" alt="Qué es el Programa ESL">
+        </div>
+        <div class="content-box">
+          <h2>¿Qué es el Programa ESL?</h2>
+          <p>Los programas de ESL (English as a Second Language) ofrecen instrucción para personas cuyo idioma nativo no es el inglés, con el objetivo de desarrollar las habilidades de inglés necesario para metas educativas y profesionales.</p>
+          <a href="https://form.jotform.com/253058637291866" target="_blank" class="content-btn">APLICAR AHORA</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO CARDS SECTION -->
+  <section class="info-section">
+    <div class="container">
+      <h2 class="section-title">Beneficios del Programa</h2>
+      <div class="cards-grid">
+        
+        <div class="info-card">
+          <div class="card-icon">📚</div>
+          <h3>Certificación Reconocida</h3>
+          <p>Obtén un certificado ESL reconocido internacionalmente que te abrirá puertas en universidades y empresas.</p>
+          <ul>
+            <li>Programa acreditado</li>
+            <li>Profesores certificados</li>
+            <li>Material incluido</li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <div class="card-icon">✈️</div>
+          <h3>Visa F-1 de Estudiante</h3>
+          <p>Te asistimos con todo el proceso de visa de estudiante con alta tasa de aprobación.</p>
+          <ul>
+            <li>Documentos I-20 incluidos</li>
+            <li>Asesoría personalizada</li>
+            <li>100% de aprobación</li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <div class="card-icon">💼</div>
+          <h3>Permiso de Trabajo</h3>
+          <p>Obtén permiso para trabajar durante y después de tus estudios en Estados Unidos.</p>
+          <ul>
+            <li>Trabajo part-time en campus</li>
+            <li>OPT después del programa</li>
+            <li>Experiencia profesional</li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <div class="card-icon">🏠</div>
+          <h3>Alojamiento Asistido</h3>
+          <p>Te ayudamos a encontrar alojamiento seguro cerca del campus universitario.</p>
+          <ul>
+            <li>Opciones variadas</li>
+            <li>Ubicaciones seguras</li>
+            <li>Precios accesibles</li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <div class="card-icon">🎓</div>
+          <h3>Pathway Universitario</h3>
+          <p>Acceso directo a programas de pregrado y posgrado en universidades acreditadas.</p>
+          <ul>
+            <li>Transfer a universidades</li>
+            <li>Programas de grado</li>
+            <li>Maestrías disponibles</li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <div class="card-icon">🌟</div>
+          <h3>Soporte Continuo</h3>
+          <p>Asesoría académica y personal durante toda tu estadía en Estados Unidos.</p>
+          <ul>
+            <li>Equipo bilingüe</li>
+            <li>Disponibilidad 24/7</li>
+            <li>Orientación académica</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>¡Da el Primer Paso Hoy!</h2>
+      <p>Únete a cientos de estudiantes internacionales que ya están cumpliendo su sueño americano. El proceso es simple y rápido.</p>
+      <a href="https://form.jotform.com/253058637291866" target="_blank" class="cta-big-btn">APLICAR AL PROGRAMA</a>
+    </div>
+  </section>
+
+  <!-- PROCESS SECTION -->
+  <section class="process-section">
+    <div class="container">
+      <h2 class="section-title">Proceso Simple en 4 Pasos</h2>
+      <div class="process-steps">
+        
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Aplicación</h3>
+          <p>Completa el formulario online con tus datos personales</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Pago</h3>
+          <p>Realiza el pago de $95 USD para procesar tu aplicación</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Documentos</h3>
+          <p>Recibe tu I-20 y documentación para visa F-1</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>¡Viaja!</h3>
+          <p>Prepara tu viaje y comienza tu programa ESL</p>
+        </div>
+
+      </div>
+
+      <div style="text-align: center; margin-top: 50px;">
+        <a href="https://form.jotform.com/253058637291866" target="_blank" class="hero-btn">COMENZAR AHORA</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">
+      <!-- Logo Edgewood -->
+      <img src="EDGEWOOD.jpeg" alt="Edgewood University">
+      <p style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-top: 10px;">Edgewood University - ESL Program</p>
+    </div>
+    
+    <p>© 2025 Edgewood University - Todos los derechos reservados</p>
+    
+    <div class="footer-contact">
+      <p>📧 edgewooduniversity@gmail.com</p>
+      <p>📱 +1 (954) 857-4066</p>
+      <p>📍 Edgewood College - Madison, Wisconsin, USA</p>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
